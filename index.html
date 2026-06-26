@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Me & Nick Antigua Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(rgba(0,30,60,.25), rgba(0,30,60,.45)),
+      url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0b2b55;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,.9);
+      border-radius: 30px;
+      padding: 30px 20px;
+      text-align: center;
+      max-width: 650px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    }
+    h1 {
+      font-size: 60px;
+      margin: 5px 0;
+      color: #062a57;
+    }
+    .script {
+      font-family: cursive;
+      font-size: 36px;
+      color: #c9a24f;
+    }
+    .sub {
+      letter-spacing: 3px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+    .timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .box {
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      padding: 15px 5px;
+      background: white;
+    }
+    .num {
+      font-size: 42px;
+      font-weight: bold;
+    }
+    .label {
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    .details {
+      margin-top: 25px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+    .footer {
+      margin-top: 20px;
+      font-family: cursive;
+      font-size: 28px;
+    }
+    @media(max-width: 500px) {
+      .timer { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 46px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="script">Me & Nick</div>
+    <h1>ANTIGUA</h1>
+    <div class="sub">COUNTDOWN TO PARADISE</div>
+
+    <div class="timer">
+      <div class="box"><div class="num" id="days">00</div><div class="label">DAYS</div></div>
+      <div class="box"><div class="num" id="hours">00</div><div class="label">HOURS</div></div>
+      <div class="box"><div class="num" id="minutes">00</div><div class="label">MINUTES</div></div>
+      <div class="box"><div class="num" id="seconds">00</div><div class="label">SECONDS</div></div>
+    </div>
+
+    <div class="details">
+      ✈️ Our flight leaves<br>
+      <strong>July 8, 2026 at 8:00 AM</strong>
+    </div>
+
+    <div class="footer">sun, sea, and unforgettable memories ♡</div>
+  </div>
+
+  <script>
+    const tripDate = new Date("July 8, 2026 08:00:00").getTime();
+
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = tripDate - now;
+
+      if (distance <= 0) {
+        document.querySelector(".sub").innerHTML = "WE'RE ON OUR WAY!";
+        return;
+      }
+
+      document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerHTML = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").innerHTML = Math.floor((distance / (1000 * 60)) % 60);
+      document.getElementById("seconds").innerHTML = Math.floor((distance / 1000) % 60);
+    }, 1000);
+  </script>
+</body>
+</html>
